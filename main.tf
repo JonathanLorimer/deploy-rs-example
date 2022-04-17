@@ -3,6 +3,20 @@ provider "google" {
   region  = "us-east1"
 }
 
+# Networking
+
+resource "google_compute_firewall" "allow-ssh" {
+  name    = "allow-ssh"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+}
+
+# Image Storage
+
 resource "google_storage_bucket" "image_store" {
   name          = "nix-equipment-nixos-images"
   location      = "US-EAST1"
@@ -24,6 +38,8 @@ resource "google_storage_bucket_object" "nixos_latest_raw_disk" {
   bucket = "nix-equipment-nixos-images"
 }
 
+# GCE
+
 resource "google_compute_image" "nixos_latest_image" {
   name = replace(local.nixos_latest_image_name, ".", "")
   raw_disk {
@@ -44,5 +60,8 @@ resource "google_compute_instance" "validator" {
 
   network_interface {
     network = "default"
+    access_config {
+      network_tier = "STANDARD"
+    }
   }
 }
