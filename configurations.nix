@@ -19,7 +19,7 @@
       ];
     };
 
-    crescent-validator-config = nixpkgs.lib.nixosSystem {
+    node1-config = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ({modulesPath, ...}: {
@@ -41,13 +41,13 @@
   };
 
   deploy.nodes = {
-    crescent-validator = {
+    node1 = {
       hostname = "35.211.149.122";
       sshUser = "root";
       user = "root";
       profiles.system = {
         user = "root";
-        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.crescent-validator-config;
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node1-config;
       };
     };
   };

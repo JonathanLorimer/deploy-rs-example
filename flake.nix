@@ -1,5 +1,5 @@
 {
-  description = "Validator configurations for Nix Equipment";
+  description = "Deploy-rs example";
 
   inputs = {
     nixpkgs.url = github:nixos/nixpkgs/nixpkgs-unstable;
@@ -7,7 +7,6 @@
     pre-commit-hooks.url = github:cachix/pre-commit-hooks.nix;
     pre-commit-hooks.inputs.flake-utils.follows = "flake-utils";
     deploy-rs.url = github:serokell/deploy-rs;
-    cosmos-nix.url = github:informalsystems/cosmos.nix;
   };
 
   outputs = inputs:
