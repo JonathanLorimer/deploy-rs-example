@@ -47,8 +47,8 @@ resource "google_compute_image" "nixos_latest_image" {
   }
 }
 
-resource "google_compute_instance" "validator" {
-  name         = "validator"
+resource "google_compute_instance" "node1" {
+  name         = "node1"
   machine_type = "n1-standard-1"
   zone         = "us-east1-b"
 
